@@ -43,7 +43,7 @@ public abstract class MeteSaca<T> {
      * @throws NoSuchElementException si la estructura está vacía.
      */
     public T saca() {
-        if(cabeza == null) throw new NoSuchElementException();
+        if(rabo == null) throw new NoSuchElementException();
         
         T sacado = cabeza.elemento;
 
@@ -60,7 +60,7 @@ public abstract class MeteSaca<T> {
      * @throws NoSuchElementException si la estructura está vacía.
      */
     public T mira() {
-        if(esVacia()) throw new NoSuchElementException();
+        if(rabo == null) throw new NoSuchElementException();
         return cabeza.elemento;
     }
 
@@ -70,7 +70,7 @@ public abstract class MeteSaca<T> {
      *         <code>false</code> en otro caso.
      */
     public boolean esVacia() {
-        return cabeza == null;
+        return rabo == null;
     }
 
     /**
