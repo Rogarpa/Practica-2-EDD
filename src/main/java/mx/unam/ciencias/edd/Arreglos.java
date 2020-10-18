@@ -18,7 +18,7 @@ public class Arreglos {
      */
     public static <T> void
     quickSort(T[] arreglo, Comparator<T> comparador) {
-        quickSort(arreglo, 0, arreglo.length, comparador);         
+        quickSort(arreglo, 0, arreglo.length - 1, comparador);         
     }
 
     private static <T> void quickSort(T[] arreglo, int a, int b, Comparator<T> comparador){
@@ -68,9 +68,10 @@ public class Arreglos {
         int n = arreglo.length;
         for(int i = 0; i < n-1; i++){
             int m = i;
-            for(int j = i+1; j < n; i++){
+            for(int j = i+1; j < n; j++){
                 if(comparador.compare(arreglo[j], arreglo[m]) < 0) m = j;
             }
+            intercambia(arreglo, m, i);
         }
     }
 
