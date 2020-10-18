@@ -12,11 +12,11 @@ public class Pila<T> extends MeteSaca<T> {
     @Override public String toString() {
         if(rabo == null) return "";
 
-        String toString = cabeza.elemento.toString();
-        Nodo it = cabeza.siguiente;
+        String toString = "";
+        Nodo it = cabeza;
 
         while(it != null){
-            toString += "\n" + it.elemento.toString();
+            toString += it.elemento.toString() + "\n";
             it = it.siguiente;
         }
 
@@ -34,7 +34,10 @@ public class Pila<T> extends MeteSaca<T> {
 
         Nodo ameter = new Nodo(elemento);
 
-        if(rabo == null) cabeza = rabo = ameter;
+        if(rabo == null){
+            cabeza = rabo = ameter;
+            return;
+        }
         
         ameter.siguiente = cabeza;
         cabeza = ameter;
