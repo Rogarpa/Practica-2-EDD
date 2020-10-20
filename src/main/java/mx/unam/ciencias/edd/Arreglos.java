@@ -103,11 +103,10 @@ public class Arreglos {
 
     private static <T> int busquedaBinaria (T[] arreglo, int a, int b, T elemento, Comparator<T> comparador){
         if(b < a) return -1;
-        int divisor = arreglo.length >> 1;
+        int divisor = a + ((b-a) >> 1);
         if(comparador.compare(arreglo[divisor], elemento) == 0) return divisor;
-        else if(comparador.compare(arreglo[divisor], elemento) < 0) return busquedaBinaria(arreglo, a, divisor-1, elemento, comparador);
-        else return busquedaBinaria(arreglo, divisor + 1, b, elemento, comparador);
-    }
+        else if(comparador.compare(elemento, arreglo[divisor]) < 0) return busquedaBinaria(arreglo, a, divisor-1, elemento, comparador);
+        else return busquedaBinaria(arreglo, divisor + 1, b, elemento, comparador);    }
 
     /**
      * Hace una búsqueda binaria del elemento en el arreglo. Regresa el índice
