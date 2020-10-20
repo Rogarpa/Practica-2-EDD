@@ -2,6 +2,8 @@ package mx.unam.ciencias.edd;
 
 import java.util.Comparator;
 
+import javax.lang.model.element.Element;
+
 /**
  * Clase para ordenar y buscar arreglos genéricos.
  */
@@ -96,7 +98,15 @@ public class Arreglos {
      */
     public static <T> int
     busquedaBinaria(T[] arreglo, T elemento, Comparator<T> comparador) {
-        return 0;
+        return busquedaBinaria(arreglo, 0, arreglo.length-1, elemento, comparador);
+    }
+
+    private static <T> int busquedaBinaria (T[] arreglo, int a, int b, T elemento, Comparator<T> comparador){
+        if(b < a) return -1;
+        int divisor = arreglo.length >> 1;
+        if(comparador.compare(arreglo[divisor], elemento) == 0) return divisor;
+        else if(comparador.compare(arreglo[divisor], elemento) < 0) return busquedaBinaria(arreglo, a, divisor-1, elemento, comparador);
+        else return busquedaBinaria(arreglo, divisor + 1, b, elemento, comparador);
     }
 
     /**
