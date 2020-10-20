@@ -264,7 +264,7 @@ public class Lista<T> implements Coleccion<T> {
 
     private Nodo buscaNodo(T elemento){
         if(elemento == null) return null;
-
+        
         Nodo encontrado = cabeza;
 
         while(encontrado != null){
@@ -580,7 +580,17 @@ public class Lista<T> implements Coleccion<T> {
      *         <code>false</code> en otro caso.
      */
     public boolean busquedaLineal(T elemento, Comparator<T> comparador) {
-        return true;
+        if(elemento == null) return false;
+        if(comparador.compare(elemento, cabeza.elemento ) < 0 || comparador.compare(rabo.elemento, elemento) < 0) return false;
+        if(comparador.compare(rabo.elemento, elemento) == 0) return true;
+        Nodo encontrado = cabeza;
+
+        while(encontrado != null){
+            if(comparador.compare(encontrado.elemento, elemento) == 0) break;
+            encontrado = encontrado.siguiente;
+        }
+        
+        return encontrado != null;
     }
 
     /**
