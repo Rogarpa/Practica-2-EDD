@@ -1,5 +1,6 @@
 package mx.unam.ciencias.edd;
 
+import java.nio.channels.NonWritableChannelException;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -484,6 +485,7 @@ public class Lista<T> implements Coleccion<T> {
     /**
      * Regresa un iterador para recorrer la lista en ambas direcciones.
      * @return un iterador para recorrer la lista en ambas direcciones.
+
      */
     public IteradorLista<T> iteradorLista() {
         return new Iterador();
@@ -498,12 +500,31 @@ public class Lista<T> implements Coleccion<T> {
      * @return una copia de la lista, pero ordenada.
      */
     public Lista<T> mergeSort(Comparator<T> comparador) {
-        return null;
-
+        return mergeSort(this, comparador);
     }
 
     private Lista<T> mergeSort(Lista<T> listaAOrdenar, Comparator<T> comparador){
-        return null;        
+        if(listaAOrdenar.longitud == 0 || listaAOrdenar.longitud == 1) return listaAOrdenar.copia();
+        
+        Lista<T> l1 = new Lista<>();
+        Lista<T> l2 = new Lista<>();
+
+        Nodo divisor = listaAOrdenar.cabeza;
+
+        for(int i = 0; i < listaAOrdenar.longitud >> 1; i++){
+            l1.agrega(divisor.elemento);
+            divisor = divisor.siguiente;
+        }
+
+        while(divisor != null){
+            l2.agrega(divisor.elemento);
+            divisor = divisor.siguiente;
+        }
+
+        l1 = mergeSort(l1,comparador);
+        l2 = mergeSort(l2, comparador);
+
+        return merger(l1, l2, comparador);
     }
 
 
