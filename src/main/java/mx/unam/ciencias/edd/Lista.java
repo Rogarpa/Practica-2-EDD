@@ -499,6 +499,32 @@ public class Lista<T> implements Coleccion<T> {
      */
     public Lista<T> mergeSort(Comparator<T> comparador) {
         return null;
+
+    }
+
+    private Lista<T> mergeSort(Lista<T> listaAOrdenar, Comparator<T> comparador){
+        return null;        
+    }
+
+
+    public Lista<T> merger(Lista<T> l1, Lista<T> l2, Comparator<T> comparador){
+        Lista<T>  merged = new Lista<>();
+        Nodo<T> l11 = l1.cabeza;
+        Nodo<T> l22 = l22.cabeza;
+
+         while(l11 == null && l22 == null){
+            if(comparador.compare(l11.elemento,l22.elemento) <= 0) {
+                merged.agrega(l11.elemento);
+                l11 = l11.siguiente;
+            }
+            else {
+                merged.agrega(l22.elemento); 
+                l22 = l22.siguiente;
+                l11 = l11.siguiente;
+            }
+         }
+         if(l11  != null) while(l11 != null) merged.agrega(l11.elemento);
+         if(l22  != null) while(l22 != null) merged.agrega(l22.elemento);
     }
 
     /**
